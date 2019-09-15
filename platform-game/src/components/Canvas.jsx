@@ -1,30 +1,25 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
 
-class Canvas extends React.Component {
+function Canvas() {
 
-    componentDidMount() {
-        this.drawCanvas();
-    }
+    let myCanvas = useRef();
 
-    componentDidUpdate() {
-        this.drawCanvas();
-    }
+    useEffect(() => {
+        drawCanvas();
+    });
 
-    drawCanvas() {
-        const context = this.myCanvas.getContext('2d');
+    function drawCanvas() {
+        const context = myCanvas.current.getContext('2d');
         context.fillStyle = 'rgb(48, 48, 48)';
-        context.fillRect(0, 0, this.myCanvas.width, this.myCanvas.height);
-        // context.clearRect(0, 0, 500, 500);
-        context.fillText('If you can read this, your eyes are better than mine.', 250, 250);
-    }
+        context.fillRect(0, 0, myCanvas.current.width, myCanvas.current.height);
+        context.fillStyle = 'rgb(100, 100, 100)';
+        context.fillRect(0, 0, 50, 50);
+        context.strokeRect(0, 0, 50, 50);
+    };
 
-    render() {
-        return (
-            <div>
-                <canvas ref={canvas => this.myCanvas = canvas} width={window.innerWidth} height={window.innerHeight} />
-            </div>
-        );
-    }
+    return (
+        <canvas ref={myCanvas} width={window.innerWidth} height={window.innerHeight} />
+    )
 }
 
 export default Canvas;
