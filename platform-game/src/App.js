@@ -1,10 +1,16 @@
-import React from 'react';
-import Canvas from './game/Canvas'
+import React, { useEffect } from 'react';
+import Game from './game/Game'
 
 function App() {
-  return (
-    <Canvas />
-  );
+
+    useEffect(() => {
+        const game = Game();
+        game.draw();
+    })
+
+    return (
+        <canvas id="game" width="500" height="500"></canvas>
+    )
 }
 
 export default App;
