@@ -8,7 +8,7 @@ function Canvas() {
         drawCanvas();
     });
 
-    function drawCanvas() {
+    const drawCanvas = () => {
         const context = myCanvas.current.getContext('2d');
         context.fillStyle = 'rgb(48, 48, 48)';
         context.fillRect(0, 0, myCanvas.current.width, myCanvas.current.height);
