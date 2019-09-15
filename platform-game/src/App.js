@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import Game from './game/Game'
+import createGame from './game/Game'
 
 function App() {
 
     useEffect(() => {
-        const game = Game();
+        const game = createGame();
         game.draw();
     })
 

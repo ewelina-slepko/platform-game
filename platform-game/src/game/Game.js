@@ -1,7 +1,7 @@
-import Canvas from './Canvas'
+import createCanvas from './Canvas'
 
-function Game() {
-    const canvas = Canvas()
+function createGame() {
+    const canvas = createCanvas()
     const draw = () => {
         canvas.drawCanvas();
         canvas.drawPlayer(20, 10);
@@ -9,4 +9,4 @@ function Game() {
     return { draw }
 }
 
-export default Game;
+export default createGame;

@@ -1,4 +1,4 @@
-function Canvas() {
+function createCanvas() {
     const canvas = document.getElementById('game');
     const context = canvas.getContext('2d');
 
@@ -19,4 +19,4 @@ function Canvas() {
     }
 }
 
-export default Canvas;
+export default createCanvas;
