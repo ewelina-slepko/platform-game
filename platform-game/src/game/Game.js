@@ -8,25 +8,21 @@ function createGame() {
 
     const movePlayerRight = () => {
         board.incrementPlayerPosX();
-        console.log(board.playerPosX)
         draw()
     }
 
     const movePlayerLeft = () => {
         board.decrementPlayerPosX()
-        console.log('jbsdgs')
         draw()
     }
 
     const movePlayerDown = () => {
         board.incrementPlayerPosY();
-        console.log(board.playerPosY)
         draw()
     }
 
     const movePlayerUp = () => {
         board.decrementPlayerPosY();
-        console.log(board.playerPosY)
         draw()
     }
 

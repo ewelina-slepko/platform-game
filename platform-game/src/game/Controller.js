@@ -15,7 +15,6 @@ function createController(moveRight, moveLeft, moveDown, moveUp) {
                 moveUp();
                 break;
             default:
-                console.log('default');
         }
     };
 }
