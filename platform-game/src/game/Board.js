@@ -3,19 +3,19 @@ function createBoard() {
     let playerPosY = 10;
 
     const incrementPlayerPosX = () => {
-        playerPosX += 1
+        playerPosX += 5
     }
 
     const decrementPlayerPosX = () => {
-        playerPosX -= 1
+        playerPosX -= 5
     }
 
     const incrementPlayerPosY = () => {
-        playerPosY += 1
+        playerPosY += 5
     }
 
     const decrementPlayerPosY = () => {
-        playerPosY -= 1
+        playerPosY -= 5
     }
 
     const getPlayerPosition = () => {

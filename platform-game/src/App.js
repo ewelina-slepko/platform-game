@@ -6,6 +6,7 @@ function App() {
     useEffect(() => {
         const game = createGame();
         game.draw();
+        console.log('app')
     })
 
     return (

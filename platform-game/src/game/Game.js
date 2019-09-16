@@ -1,6 +1,7 @@
 import createCanvas from './Canvas'
 import createController from './Controller'
 import createBoard from './Board'
+import createEngine from './Engine';
 
 function createGame() {
     const canvas = createCanvas();
@@ -27,11 +28,13 @@ function createGame() {
     }
 
     createController(movePlayerRight, movePlayerLeft, movePlayerDown, movePlayerUp)
+    createEngine();
 
     const draw = () => {
         canvas.drawCanvas();
         canvas.drawPlayer(board.getPlayerPosition().playerPosX, board.getPlayerPosition().playerPosY);
     }
+
     return { draw }
 }
 
