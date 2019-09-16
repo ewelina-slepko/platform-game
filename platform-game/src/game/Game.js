@@ -7,33 +7,29 @@ function createGame() {
     const canvas = createCanvas();
     const board = createBoard();
 
-    const movePlayerRight = () => {
-        board.incrementPlayerPosX();
-        draw()
-    }
-
-    const movePlayerLeft = () => {
-        board.decrementPlayerPosX()
-        draw()
-    }
-
-    const movePlayerDown = () => {
-        board.incrementPlayerPosY();
-        draw()
-    }
-
-    const movePlayerUp = () => {
-        board.decrementPlayerPosY();
-        draw()
-    }
-
-    createController(movePlayerRight, movePlayerLeft, movePlayerDown, movePlayerUp)
-    createEngine();
-
     const draw = () => {
         canvas.drawCanvas();
         canvas.drawPlayer(board.getPlayerPosition().playerPosX, board.getPlayerPosition().playerPosY);
     }
+    createEngine(draw);
+
+    const movePlayerRight = () => {
+        board.incrementPlayerPosX();
+    }
+
+    const movePlayerLeft = () => {
+        board.decrementPlayerPosX()
+    }
+
+    const movePlayerDown = () => {
+        board.incrementPlayerPosY();
+    }
+
+    const movePlayerUp = () => {
+        board.decrementPlayerPosY();
+    }
+
+    createController(movePlayerRight, movePlayerLeft, movePlayerDown, movePlayerUp)
 
     return { draw }
 }

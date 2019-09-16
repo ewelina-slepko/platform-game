@@ -13,11 +13,6 @@ function createCanvas() {
         context.strokeRect(x, y, 50, 50);
     }
 
-    // const clearCanvas = (x, y) => {
-    //     context.clearRect(0, 0, 500, 500);
-    //     context.clearRect(x, y, 50, 50);
-    // }
-
     return {
         drawCanvas,
         drawPlayer,
