@@ -13,20 +13,27 @@ function createGame() {
     }
     createEngine(draw);
 
-    const movePlayerRight = () => {
-        board.incrementPlayerPosX();
+    const movePlayerRight = (right) => {
+        if (right) {
+            board.incrementPlayerPosX();
+        }
     }
 
-    const movePlayerLeft = () => {
-        board.decrementPlayerPosX()
+    const movePlayerLeft = (left) => {
+        if (left) {
+            board.decrementPlayerPosX()
+            console.log(left)
+        }
     }
 
     const movePlayerDown = () => {
         board.incrementPlayerPosY();
     }
 
-    const movePlayerUp = () => {
-        board.decrementPlayerPosY();
+    const movePlayerUp = (up) => {
+        if (up) {
+            board.decrementPlayerPosY();
+        }
     }
 
     createController(movePlayerRight, movePlayerLeft, movePlayerDown, movePlayerUp)
@@ -35,3 +42,4 @@ function createGame() {
 }
 
 export default createGame;
+

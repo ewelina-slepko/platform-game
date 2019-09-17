@@ -1,13 +1,9 @@
-function createEngine(callback) {
+function createEngine(draw, controller) {
 
     function update() {
-
-        requestAnimationFrame(update);
-        callback()
-        console.log('coś')
-
+        draw()
+        window.requestAnimationFrame(update);
     };
     update();
 }
-
 export default createEngine;
