@@ -4,14 +4,19 @@ import createBoard from './Board'
 import createEngine from './Engine';
 
 function createGame() {
-    const canvas = createCanvas();
-    const board = createBoard();
-
     const draw = () => {
         canvas.drawCanvas();
         canvas.drawPlayer(board.getPlayerPosition().playerPosX, board.getPlayerPosition().playerPosY);
     }
-    createEngine(draw);
+
+    const func = () => {
+        console.log('func')
+        board.incrementPlayerPosX();
+    }
+
+    const canvas = createCanvas();
+    const board = createBoard();
+    createEngine(draw, func);
 
     const movePlayerRight = (right) => {
         if (right) {
@@ -22,8 +27,8 @@ function createGame() {
     const movePlayerLeft = (left) => {
         if (left) {
             board.decrementPlayerPosX()
-            console.log(left)
         }
+        console.log(left)
     }
 
     const movePlayerDown = () => {

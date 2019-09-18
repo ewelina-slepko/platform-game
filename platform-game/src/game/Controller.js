@@ -4,7 +4,6 @@ function createController(movePlayerRight, movePlayerLeft, movePlayerDown, moveP
     let right = false;
     let up = false;
 
-
     document.onkeydown = function (e) {
         const key_state = e.type === "keydown" ? true : false
         switch (e.keyCode) {
@@ -46,9 +45,7 @@ function createController(movePlayerRight, movePlayerLeft, movePlayerDown, moveP
                 break;
             default:
         }
-        console.log(left)
     };
-    console.log(left, right, up)
 }
 
 export default createController;

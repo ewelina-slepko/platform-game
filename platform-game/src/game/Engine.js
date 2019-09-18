@@ -1,6 +1,13 @@
-function createEngine(draw, controller) {
+function createEngine(draw, func) {
+    let lastTimestamp = 0
 
-    function update() {
+    function update(timestamp) {
+
+        if (timestamp - lastTimestamp >= 1000 / 30) {
+            func()
+            lastTimestamp = timestamp;
+        }
+
         draw()
         window.requestAnimationFrame(update);
     };
