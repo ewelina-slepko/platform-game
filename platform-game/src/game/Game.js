@@ -10,18 +10,12 @@ function createGame() {
     const canvas = createCanvas();
     const board = createBoard();
 
-    const draw = () => {
-        canvas.drawCanvas();
-        canvas.drawPlayer(playerPosX, playerPosY);
-    }
-
     const movePlayerRight = (right) => board.movingRight = right
     const movePlayerLeft = (left) => board.movingLeft = left;
     const movePlayerUp = (up) => board.movingUp = up;
     const movePlayerDown = (down) => board.movingDown = down;
 
     const updateMovement = () => {
-        console.log(board.movingLeft, board.movingRight, board.movingUp, board.movingDown)
         if (board.movingLeft) {
             playerPosX -= 5
         }
@@ -36,8 +30,13 @@ function createGame() {
         }
     }
 
+    const draw = () => {
+        canvas.drawCanvas();
+        canvas.drawPlayer(playerPosX, playerPosY);
+    }
+
     createController(movePlayerLeft, movePlayerRight, movePlayerUp, movePlayerDown)
-    createEngine(draw, updateMovement);
+    createEngine(updateMovement, draw);
 
     return { draw }
 }

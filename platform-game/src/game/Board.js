@@ -4,12 +4,7 @@ function createBoard() {
     let movingUp;
     let movingDown;
 
-    return {
-        movingLeft,
-        movingRight,
-        movingUp,
-        movingDown
-    }
+    return { movingLeft, movingRight, movingUp, movingDown }
 }
 
 export default createBoard;
