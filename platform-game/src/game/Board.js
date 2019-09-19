@@ -1,19 +1,15 @@
 function createBoard() {
-    let playerPosX = 10;
-    let playerPosY = 10;
+    let movingLeft;
+    let movingRight;
+    let movingUp;
+    let movingDown;
 
-    const incrementPlayerPosX = () => playerPosX += 2
-    const decrementPlayerPosX = () => playerPosX -= 2
-    const incrementPlayerPosY = () => playerPosY += 2
-    const decrementPlayerPosY = () => playerPosY -= 2
-
-
-    const getPlayerPosition = () => {
-        return { playerPosX, playerPosY }
+    return {
+        movingLeft,
+        movingRight,
+        movingUp,
+        movingDown
     }
-
-
-    return { getPlayerPosition, incrementPlayerPosX, decrementPlayerPosX, incrementPlayerPosY, decrementPlayerPosY, stopPlayerPositionX, stopPlayerPositionY }
 }
 
 export default createBoard;

@@ -1,11 +1,12 @@
-function createController(movePlayerRight, movePlayerLeft, movePlayerDown, movePlayerUp) {
+function createController(movePlayerLeft, movePlayerRight, movePlayerUp, movePlayerDown) {
 
     let left = false;
     let right = false;
     let up = false;
+    let down = false;
 
     document.onkeydown = function (e) {
-        const key_state = e.type === "keydown" ? true : false
+        const key_state = e.type === "keydown"
         switch (e.keyCode) {
             case 37:
                 left = key_state
@@ -16,7 +17,8 @@ function createController(movePlayerRight, movePlayerLeft, movePlayerDown, moveP
                 movePlayerRight(right)
                 break;
             case 40:
-                movePlayerDown()
+                down = key_state
+                movePlayerDown(down)
                 break;
             case 38:
                 up = key_state
@@ -26,7 +28,7 @@ function createController(movePlayerRight, movePlayerLeft, movePlayerDown, moveP
         }
     };
     document.onkeyup = function (e) {
-        const key_state = e.type === "keyup" ? false : true
+        const key_state = e.type !== "keyup"
         switch (e.keyCode) {
             case 37:
                 left = key_state
@@ -37,7 +39,8 @@ function createController(movePlayerRight, movePlayerLeft, movePlayerDown, moveP
                 movePlayerRight(right)
                 break;
             case 40:
-                movePlayerDown()
+                down = key_state
+                movePlayerDown(down)
                 break;
             case 38:
                 up = key_state
