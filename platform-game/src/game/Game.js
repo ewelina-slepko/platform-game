@@ -18,28 +18,12 @@ function createGame() {
     const board = createBoard();
     createEngine(draw, func);
 
-    const movePlayerRight = (right) => {
-        if (right) {
-            board.incrementPlayerPosX();
-        }
-    }
+    const movePlayerRight = (right) => board.incrementPlayerPosX()
+    const movePlayerLeft = (left) => board.decrementPlayerPosX()
+    const movePlayerDown = () => board.incrementPlayerPosY();
+    const movePlayerUp = (up) => board.decrementPlayerPosY();
 
-    const movePlayerLeft = (left) => {
-        if (left) {
-            board.decrementPlayerPosX()
-        }
-        console.log(left)
-    }
 
-    const movePlayerDown = () => {
-        board.incrementPlayerPosY();
-    }
-
-    const movePlayerUp = (up) => {
-        if (up) {
-            board.decrementPlayerPosY();
-        }
-    }
 
     createController(movePlayerRight, movePlayerLeft, movePlayerDown, movePlayerUp)
 
