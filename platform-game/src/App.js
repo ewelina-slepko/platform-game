@@ -9,7 +9,7 @@ function App() {
     })
 
     return (
-        <canvas id="game" width="500" height="500"></canvas>
+        <canvas id="game" class="canvas" height={window.innerHeight} width={window.innerWidth}></canvas>
     )
 }
 

@@ -17,16 +17,16 @@ function createGame() {
 
     const updateMovement = () => {
         if (board.movingLeft) {
-            playerPosX -= 5
+            playerPosX -= 2
         }
         if (board.movingRight) {
-            playerPosX += 5
+            playerPosX += 2
         }
         if (board.movingUp) {
-            playerPosY -= 5
+            playerPosY -= 2
         }
         if (board.movingDown) {
-            playerPosY += 5
+            playerPosY += 2
         }
     }
 

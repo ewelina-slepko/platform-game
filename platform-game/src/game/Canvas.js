@@ -4,7 +4,7 @@ function createCanvas() {
 
     const drawCanvas = () => {
         context.fillStyle = 'rgb(48, 48, 48)';
-        context.fillRect(0, 0, 500, 500);
+        context.fillRect(0, 0, window.innerWidth, window.innerHeight);
     }
 
     const drawPlayer = (x, y) => {
