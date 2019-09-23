@@ -5,6 +5,9 @@ import createEngine from './Engine';
 
 let playerPosX = 10;
 let playerPosY = window.innerHeight - 70;
+let velocityX = 0;
+let velocityY = 0;
+let jumping = true;
 
 function createGame() {
     const canvas = createCanvas();
@@ -17,26 +20,33 @@ function createGame() {
 
     const updateMovement = () => {
         if (board.movingLeft) {
-            playerPosX -= 2
+            velocityX -= 0.5
         }
         if (board.movingRight) {
-            playerPosX += 2
+            velocityX += 0.5
         }
-        if (board.movingUp) {
-            playerPosY -= 20
+        if (board.movingUp && jumping === false) {
+            velocityY -= 30
+            jumping = true;
         }
         if (board.movingDown) {
-            playerPosY += 2
+            velocityY += 0.5
         }
 
-        if (playerPosY >= window.innerHeight - 70) {
-            playerPosY = window.innerHeight - 78
+        if (playerPosY >= window.innerHeight - 84) {
+            playerPosY = window.innerHeight - 84
+            jumping = false;
         }
 
         if (playerPosY === window.innerHeight - 250 && (playerPosX >= 200 - 50 && playerPosX <= 200 + 300)) {
             playerPosY = window.innerHeight - 258
+            jumping = false;
         }
-        // playerPosY += 8;
+        playerPosX += velocityX;
+        playerPosY += velocityY
+        velocityX *= 0.9
+        velocityY *= 0.9
+        velocityY += 1.5;
     }
 
 
