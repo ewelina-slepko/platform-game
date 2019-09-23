@@ -24,7 +24,6 @@ function createGame() {
         }
         if (board.movingUp) {
             playerPosY -= 20
-
         }
         if (board.movingDown) {
             playerPosY += 2
@@ -33,7 +32,11 @@ function createGame() {
         if (playerPosY >= window.innerHeight - 70) {
             playerPosY = window.innerHeight - 78
         }
-        playerPosY += 8;
+
+        if (playerPosY === window.innerHeight - 250 && (playerPosX >= 200 - 50 && playerPosX <= 200 + 300)) {
+            playerPosY = window.innerHeight - 258
+        }
+        // playerPosY += 8;
     }
 
 
