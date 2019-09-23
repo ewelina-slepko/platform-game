@@ -4,7 +4,7 @@ import createBoard from './Board'
 import createEngine from './Engine';
 
 let playerPosX = 10;
-let playerPosY = 400;
+let playerPosY = window.innerHeight - 70;
 
 function createGame() {
     const canvas = createCanvas();
@@ -23,12 +23,19 @@ function createGame() {
             playerPosX += 2
         }
         if (board.movingUp) {
-            playerPosY -= 2
+            playerPosY -= 20
+
         }
         if (board.movingDown) {
             playerPosY += 2
         }
+
+        if (playerPosY >= window.innerHeight - 70) {
+            playerPosY = window.innerHeight - 78
+        }
+        playerPosY += 8;
     }
+
 
     const draw = () => {
         canvas.drawCanvas();
