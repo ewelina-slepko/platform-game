@@ -19,27 +19,27 @@ function createGame() {
 
     const updateMovement = () => {
         if (board.movingLeft) {
-            velocityX -= 2
+            velocityX -= 1.5
         }
         if (board.movingRight) {
-            velocityX += 2
+            velocityX += 1.5
         }
         if (board.movingUp && jumping === false) {
-            velocityY -= 40
+            velocityY -= 30
             jumping = true;
         }
 
-        if (playerPosY >= window.innerHeight - 80) {
-            playerPosY = window.innerHeight - 80
+        if (playerPosY > window.innerHeight - 68) {
+            playerPosY = window.innerHeight - 68
+
             jumping = false;
         }
 
         playerPosX += velocityX;
-        playerPosY += velocityY
+        playerPosY += velocityY;
         velocityX *= 0.9
         velocityY *= 0.9
-        velocityY += 3;
-        console.log(playerPosY)
+        velocityY += 1.5;
     }
 
 
