@@ -7,10 +7,7 @@ function createCanvas() {
         context.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
         context.fillStyle = 'rgb(24, 24, 24)';
-        context.fillRect(0, window.innerHeight - 20, window.innerWidth, 20)
-
-        context.fillStyle = 'rgb(24, 24, 24)';
-        context.fillRect(200, window.innerHeight - 200, 300, 20)
+        context.fillRect(200, window.innerHeight - 200, 200, 10)
 
     }
 
