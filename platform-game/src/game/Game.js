@@ -3,7 +3,7 @@ import createController from './Controller'
 import createBoard from './Board'
 import createEngine from './Engine';
 
-let playerPosX = 10;
+let playerPosX = 0;
 let playerPosY = window.innerHeight - 70;
 let velocityX = 0;
 let velocityY = 0;
@@ -16,7 +16,6 @@ function createGame() {
     const movePlayerRight = (right) => board.movingRight = right
     const movePlayerLeft = (left) => board.movingLeft = left;
     const movePlayerUp = (up) => board.movingUp = up;
-    const movePlayerDown = (down) => board.movingDown = down;
 
     const updateMovement = () => {
         if (board.movingLeft) {
@@ -28,9 +27,6 @@ function createGame() {
         if (board.movingUp && jumping === false) {
             velocityY -= 40
             jumping = true;
-        }
-        if (board.movingDown) {
-            velocityY += 2
         }
 
         if (playerPosY >= window.innerHeight - 84) {
@@ -55,7 +51,7 @@ function createGame() {
         canvas.drawPlayer(playerPosX, playerPosY);
     }
 
-    createController(movePlayerLeft, movePlayerRight, movePlayerUp, movePlayerDown)
+    createController(movePlayerLeft, movePlayerRight, movePlayerUp)
     createEngine(updateMovement, draw);
 
     return { draw }

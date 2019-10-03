@@ -3,7 +3,6 @@ function createController(movePlayerLeft, movePlayerRight, movePlayerUp, movePla
     let left = false;
     let right = false;
     let up = false;
-    let down = false;
 
     document.onkeydown = function (e) {
         const key_state = e.type === "keydown"
@@ -15,10 +14,6 @@ function createController(movePlayerLeft, movePlayerRight, movePlayerUp, movePla
             case 39:
                 right = key_state
                 movePlayerRight(right)
-                break;
-            case 40:
-                down = key_state
-                movePlayerDown(down)
                 break;
             case 38:
                 up = key_state
@@ -37,10 +32,6 @@ function createController(movePlayerLeft, movePlayerRight, movePlayerUp, movePla
             case 39:
                 right = key_state
                 movePlayerRight(right)
-                break;
-            case 40:
-                down = key_state
-                movePlayerDown(down)
                 break;
             case 38:
                 up = key_state
