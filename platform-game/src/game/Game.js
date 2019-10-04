@@ -4,7 +4,7 @@ import createBoard from './Board'
 import createEngine from './Engine';
 
 let playerPosX = 0;
-let playerPosY = 0;
+let playerPosY = window.innerHeight - 68;
 let velocityX = 0;
 let velocityY = 0;
 let jumping = true;
@@ -42,6 +42,13 @@ function createGame() {
         velocityY += 1.5;
     }
 
+    const detectCollision = () => {
+        if (playerPosY < window.innerHeight - 200 && playerPosX > window.innerWidth - 740) {
+            console.log(playerPosX)
+            playerPosY = window.innerHeight - 200 - 50
+        }
+    }
+
 
     const draw = () => {
         canvas.drawCanvas();
@@ -49,7 +56,7 @@ function createGame() {
     }
 
     createController(movePlayerLeft, movePlayerRight, movePlayerUp)
-    createEngine(updateMovement, draw);
+    createEngine(updateMovement, draw, detectCollision);
 
     return { draw }
 }
