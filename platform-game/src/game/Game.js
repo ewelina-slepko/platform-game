@@ -13,7 +13,7 @@ const playerWidth = 50;
 
 //player position
 let playerPositionX = 0;
-let playerPositionY = window.innerHeight - 50;
+let playerPositionY = window.innerHeight - playerHeight;
 
 function createGame() {
     const canvas = createCanvas();
@@ -40,7 +40,13 @@ function createGame() {
     }
 
     const detectCollision = () => {
-        console.log(playerPositionY)
+        let isCollision = false
+        if (playerPositionX >= 200 - playerWidth && playerPositionX <= 200 + 100) {
+            isCollision = true
+
+        }
+        console.log(isCollision)
+
     }
 
     const draw = () => {
