@@ -3,8 +3,17 @@ import createController from './Controller'
 import createBoard from './Board'
 import createEngine from './Engine';
 
-let playerPosX = 0;
-let playerPosY = window.innerHeight - 68;
+//canvas size
+const canvasHeight = window.innerHeight;
+const canvasWidth = window.innerWidth;
+
+//player size
+const playerHeight = 50;
+const playerWidth = 50;
+
+//player position
+let playerPositionX = 0;
+let playerPositionY = window.innerHeight - 50;
 
 function createGame() {
     const canvas = createCanvas();
@@ -17,27 +26,26 @@ function createGame() {
 
     const updateMovement = () => {
         if (board.movingLeft) {
-            playerPosX -= 2
+            playerPositionX -= 2
         }
         if (board.movingRight) {
-            playerPosX += 2
+            playerPositionX += 2
         }
         if (board.movingUp) {
-            playerPosY -= 2
+            playerPositionY -= 2
         }
         if (board.movingDown) {
-            playerPosY += 2
+            playerPositionY += 2
         }
     }
 
     const detectCollision = () => {
-        console.log(playerPosY)
+        console.log(playerPositionY)
     }
 
-
     const draw = () => {
-        canvas.drawCanvas();
-        canvas.drawPlayer(playerPosX, playerPosY);
+        canvas.drawCanvas(canvasHeight, canvasWidth);
+        canvas.drawPlayer(playerPositionX, playerPositionY, playerWidth, playerHeight);
     }
 
     createController(movePlayerLeft, movePlayerRight, movePlayerUp, movePlayerDown)
@@ -45,6 +53,5 @@ function createGame() {
 
     return { draw }
 }
-
 export default createGame;
 
