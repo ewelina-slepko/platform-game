@@ -5,9 +5,6 @@ import createEngine from './Engine';
 
 let playerPosX = 0;
 let playerPosY = window.innerHeight - 68;
-let velocityX = 0;
-let velocityY = 0;
-let jumping = true;
 
 function createGame() {
     const canvas = createCanvas();
@@ -16,37 +13,25 @@ function createGame() {
     const movePlayerRight = (right) => board.movingRight = right
     const movePlayerLeft = (left) => board.movingLeft = left;
     const movePlayerUp = (up) => board.movingUp = up;
+    const movePlayerDown = (down) => board.movingDown = down;
 
     const updateMovement = () => {
         if (board.movingLeft) {
-            velocityX -= 1.5
+            playerPosX -= 2
         }
         if (board.movingRight) {
-            velocityX += 1.5
+            playerPosX += 2
         }
-        if (board.movingUp && jumping === false) {
-            velocityY -= 30
-            jumping = true;
+        if (board.movingUp) {
+            playerPosY -= 2
         }
-
-        if (playerPosY > window.innerHeight - 68) {
-            playerPosY = window.innerHeight - 68
-
-            jumping = false;
+        if (board.movingDown) {
+            playerPosY += 2
         }
-
-        playerPosX += velocityX;
-        playerPosY += velocityY;
-        velocityX *= 0.9
-        velocityY *= 0.9
-        velocityY += 1.5;
     }
 
     const detectCollision = () => {
-        if (playerPosY < window.innerHeight - 200 && playerPosX > window.innerWidth - 740) {
-            console.log(playerPosX)
-            playerPosY = window.innerHeight - 200 - 50
-        }
+        console.log(playerPosY)
     }
 
 
@@ -55,7 +40,7 @@ function createGame() {
         canvas.drawPlayer(playerPosX, playerPosY);
     }
 
-    createController(movePlayerLeft, movePlayerRight, movePlayerUp)
+    createController(movePlayerLeft, movePlayerRight, movePlayerUp, movePlayerDown)
     createEngine(updateMovement, draw, detectCollision);
 
     return { draw }
