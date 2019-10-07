@@ -16,7 +16,6 @@ let playerPositionX = 0;
 let playerPositionY = window.innerHeight - playerHeight;
 
 //obstacles
-
 const obstacles = [
     { positionX: 200, positionY: canvasHeight - 100, width: 100, height: 100, color: 'rgb(24, 24, 24)' }
 ]
@@ -48,14 +47,15 @@ function createGame() {
     const detectCollision = () => {
         let isCollision = false
 
-        if (playerPositionX >= 200 - playerWidth &&
-            playerPositionX <= 200 + 100 &&
-            playerPositionY + playerHeight >= canvasHeight - 100) {
+        const detectedObstacle = obstacles.map((obstacle) => {
+            if (playerPositionX >= obstacle.positionX - playerWidth &&
+                playerPositionX <= obstacle.positionX + obstacle.width &&
+                playerPositionY + playerHeight >= canvasHeight - obstacle.height) {
+                isCollision = true
+            }
+            console.log(isCollision)
+        })
 
-            isCollision = true
-
-        }
-        console.log(isCollision)
     }
 
     const draw = () => {
