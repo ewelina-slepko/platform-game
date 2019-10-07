@@ -2,13 +2,15 @@ function createCanvas() {
     const canvas = document.getElementById('game');
     const context = canvas.getContext('2d');
 
-    const drawCanvas = (canvasHeight, canvasWidth) => {
+    const drawCanvas = (obstacles, canvasHeight, canvasWidth) => {
         context.fillStyle = 'rgb(48, 48, 48)';
         context.fillRect(0, 0, canvasWidth, canvasHeight);
 
-        //obstacles
-        context.fillStyle = 'rgb(24, 24, 24)';
-        context.fillRect(200, canvasHeight - 100, 100, 100)
+        const obstacle = obstacles.map((element) => {
+            context.fillStyle = element.color
+            context.fillRect(element.positionX, element.positionY, element.width, element.height)
+        })
+        return obstacle;
     }
 
     const drawPlayer = (playerPositionX, playerPositionY, playerWidth, playerHeight) => {
