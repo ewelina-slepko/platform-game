@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import createCanvas from './Canvas'
 import createController from './Controller'
 import createBoard from './Board'
@@ -17,7 +18,8 @@ let playerPositionY = window.innerHeight - playerHeight;
 
 //obstacles
 const obstacles = [
-    { positionX: 200, positionY: canvasHeight - 100, width: 100, height: 100, color: 'rgb(24, 24, 24)' }
+    { positionX: 200, positionY: canvasHeight - 300, width: 100, height: 100, color: 'rgb(24, 24, 24)' },
+    { positionX: 600, positionY: canvasHeight - 400, width: 100, height: 200, color: 'rgb(235, 52, 225)' }
 ]
 
 function createGame() {
@@ -44,18 +46,19 @@ function createGame() {
         }
     }
 
-    const detectCollision = () => {
+    function detectCollision() {
         let isCollision = false
-
-        const detectedObstacle = obstacles.map((obstacle) => {
-            if (playerPositionX >= obstacle.positionX - playerWidth &&
+        obstacles.map((obstacle) => {
+            if (playerPositionX + playerWidth >= obstacle.positionX &&
                 playerPositionX <= obstacle.positionX + obstacle.width &&
-                playerPositionY + playerHeight >= canvasHeight - obstacle.height) {
+                playerPositionY + playerHeight >= obstacle.positionY &&
+                playerPositionY <= obstacle.positionY + obstacle.height) {
+
                 isCollision = true
+
             }
             console.log(isCollision)
         })
-
     }
 
     const draw = () => {
