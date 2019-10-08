@@ -12,7 +12,7 @@ const player = { positionX: 0, positionY: window.innerHeight - 50, width: 50, he
 
 //obstacles
 const obstacles = [
-    { positionX: 200, positionY: canvasHeight - 300, width: 100, height: 100, color: 'rgb(24, 24, 24)' },
+    { positionX: 200, positionY: canvasHeight - 300, width: 100, height: 300, color: 'rgb(24, 24, 24)' },
     { positionX: 600, positionY: canvasHeight - 400, width: 100, height: 200, color: 'rgb(235, 52, 225)' }
 ]
 
@@ -26,31 +26,61 @@ function createGame() {
     const movePlayerDown = (down) => board.movingDown = down;
 
     const updateMovement = () => {
-        if (board.movingLeft) {
+        if ((board.movingLeft && detectCollision(player, obstacles[0]))
+            || (board.movingLeft && detectCollision(player, obstacles[1]))) {
+            player.positionX += 8
+        } else if (board.movingLeft) {
             player.positionX -= 2
         }
-        if (board.movingRight) {
+
+        if ((board.movingRight && detectCollision(player, obstacles[0]))
+            || (board.movingRight && detectCollision(player, obstacles[1]))) {
+            player.positionX -= 8
+        } else if (board.movingRight) {
             player.positionX += 2
         }
-        if (board.movingUp) {
+
+        if ((board.movingUp && detectCollision(player, obstacles[0]))
+            || (board.movingUp && detectCollision(player, obstacles[1]))) {
+            player.positionY += 8
+        } else if (board.movingUp) {
             player.positionY -= 2
         }
-        if (board.movingDown) {
+
+        if ((board.movingDown && detectCollision(player, obstacles[0]))
+            || (board.movingDown && detectCollision(player, obstacles[1]))) {
+            player.positionY -= 8
+        } else if (board.movingDown) {
             player.positionY += 2
         }
     }
 
+
     function detectCollision(object1, object2) {
+        const isLeftEdge = object1.positionX + object1.width >= object2.positionX;
+        const isRightEdge = object1.positionX <= object2.positionX + object2.width;
+        const isTopEdge = object1.positionY + object1.height >= object2.positionY;
+        const isBottomEdge = object1.positionY <= object2.positionY + object2.height
+
         let isCollision = false
 
-        if (object1.positionX + object1.width >= object2[0].positionX &&
-            object1.positionX <= object2[0].positionX + object2[0].width &&
-            object1.positionY + object1.height >= object2[0].positionY &&
-            object1.positionY <= object2[0].positionY + object2[0].height) {
-
-            isCollision = true
+        if (isLeftEdge && isRightEdge && isTopEdge && isBottomEdge) {
+            isCollision = true;
+        } else {
+            isCollision = false
         }
-        console.log(isCollision)
+        return isCollision
+        // if (isCollision && board.movingRight) {
+        //     object1.positionX = object2.positionX - object1.width
+        // }
+
+        // if (isCollision && board.movingDown) {
+        //     object1.positionY = object2.positionY - object1.height
+        // }
+
+        // if (isCollision && board.movingLeft) {
+        //     object1.positionX = object2.positionX + object2.width
+        // }
     }
 
     const draw = () => {

@@ -4,7 +4,8 @@ function createEngine(updateMovement, draw, detectCollision, player, obstacles) 
     function update(timestamp) {
         if (timestamp - lastTimestamp >= 1000 / 80) {
             updateMovement()
-            detectCollision(player, obstacles)
+            detectCollision(player, obstacles[0])
+            detectCollision(player, obstacles[1])
             lastTimestamp = timestamp;
         }
         draw()
