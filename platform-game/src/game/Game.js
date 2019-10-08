@@ -8,12 +8,13 @@ import createEngine from './Engine';
 const canvasHeight = window.innerHeight;
 const canvasWidth = window.innerWidth;
 
-const player = { positionX: 0, positionY: window.innerHeight - 50, width: 50, height: 50 }
+const player = { positionX: 0, positionY: window.innerHeight - 60, width: 50, height: 50 }
 
 //obstacles
 const obstacles = [
     { positionX: 200, positionY: canvasHeight - 300, width: 100, height: 300, color: 'rgb(24, 24, 24)' },
-    { positionX: 600, positionY: canvasHeight - 400, width: 100, height: 200, color: 'rgb(235, 52, 225)' }
+    { positionX: 600, positionY: canvasHeight - 400, width: 100, height: 200, color: 'rgb(235, 52, 225)' },
+    { positionX: 0, positionY: canvasHeight - 10, width: canvasWidth, height: 10, color: 'rgb(235, 52, 225)' }
 ]
 
 function createGame() {
@@ -53,8 +54,13 @@ function createGame() {
         } else if (board.movingDown) {
             player.positionY += 2
         }
-    }
 
+        if (detectCollision(player, obstacles[2])) {
+            player.positionY = window.innerHeight - (60 + 1.5)
+        }
+
+        player.positionY += 1.5
+    }
 
     function detectCollision(object1, object2) {
         const isLeftEdge = object1.positionX + object1.width >= object2.positionX;
