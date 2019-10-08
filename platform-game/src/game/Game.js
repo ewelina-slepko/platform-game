@@ -17,6 +17,9 @@ const obstacles = [
     { positionX: 0, positionY: canvasHeight - 10, width: canvasWidth, height: 10, color: 'rgb(235, 52, 225)' }
 ]
 
+let velocityY = 0;
+let jumping = true;
+
 function createGame() {
     const canvas = createCanvas();
     const board = createBoard();
@@ -31,35 +34,40 @@ function createGame() {
             || (board.movingLeft && detectCollision(player, obstacles[1]))) {
             player.positionX += 8
         } else if (board.movingLeft) {
-            player.positionX -= 2
+            player.positionX -= 6
         }
 
         if ((board.movingRight && detectCollision(player, obstacles[0]))
             || (board.movingRight && detectCollision(player, obstacles[1]))) {
+            console.log(board.movingLeft)
             player.positionX -= 8
         } else if (board.movingRight) {
-            player.positionX += 2
+            player.positionX += 6
         }
 
         if ((board.movingUp && detectCollision(player, obstacles[0]))
             || (board.movingUp && detectCollision(player, obstacles[1]))) {
-            player.positionY += 8
-        } else if (board.movingUp) {
-            player.positionY -= 2
+            player.positionY += 34
+        } else if (board.movingUp && jumping === false) {
+            velocityY -= 34
+            jumping = true
         }
 
         if ((board.movingDown && detectCollision(player, obstacles[0]))
             || (board.movingDown && detectCollision(player, obstacles[1]))) {
             player.positionY -= 8
         } else if (board.movingDown) {
-            player.positionY += 2
+            player.positionY += 6
         }
 
         if (detectCollision(player, obstacles[2])) {
-            player.positionY = window.innerHeight - (60 + 1.5)
+            player.positionY = window.innerHeight - 60
+            jumping = false;
         }
 
-        player.positionY += 1.5
+        player.positionY += velocityY;
+        velocityY *= 0.9
+        velocityY += 1.5;
     }
 
     function detectCollision(object1, object2) {
@@ -76,17 +84,6 @@ function createGame() {
             isCollision = false
         }
         return isCollision
-        // if (isCollision && board.movingRight) {
-        //     object1.positionX = object2.positionX - object1.width
-        // }
-
-        // if (isCollision && board.movingDown) {
-        //     object1.positionY = object2.positionY - object1.height
-        // }
-
-        // if (isCollision && board.movingLeft) {
-        //     object1.positionX = object2.positionX + object2.width
-        // }
     }
 
     const draw = () => {
