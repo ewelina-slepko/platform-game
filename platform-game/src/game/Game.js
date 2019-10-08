@@ -8,13 +8,7 @@ import createEngine from './Engine';
 const canvasHeight = window.innerHeight;
 const canvasWidth = window.innerWidth;
 
-//player size
-const playerHeight = 50;
-const playerWidth = 50;
-
-//player position
-let playerPositionX = 0;
-let playerPositionY = window.innerHeight - playerHeight;
+const player = { positionX: 0, positionY: window.innerHeight - 50, width: 50, height: 50 }
 
 //obstacles
 const obstacles = [
@@ -33,41 +27,39 @@ function createGame() {
 
     const updateMovement = () => {
         if (board.movingLeft) {
-            playerPositionX -= 2
+            player.positionX -= 2
         }
         if (board.movingRight) {
-            playerPositionX += 2
+            player.positionX += 2
         }
         if (board.movingUp) {
-            playerPositionY -= 2
+            player.positionY -= 2
         }
         if (board.movingDown) {
-            playerPositionY += 2
+            player.positionY += 2
         }
     }
 
-    function detectCollision() {
+    function detectCollision(object1, object2) {
         let isCollision = false
-        obstacles.map((obstacle) => {
-            if (playerPositionX + playerWidth >= obstacle.positionX &&
-                playerPositionX <= obstacle.positionX + obstacle.width &&
-                playerPositionY + playerHeight >= obstacle.positionY &&
-                playerPositionY <= obstacle.positionY + obstacle.height) {
 
-                isCollision = true
+        if (object1.positionX + object1.width >= object2[0].positionX &&
+            object1.positionX <= object2[0].positionX + object2[0].width &&
+            object1.positionY + object1.height >= object2[0].positionY &&
+            object1.positionY <= object2[0].positionY + object2[0].height) {
 
-            }
-            console.log(isCollision)
-        })
+            isCollision = true
+        }
+        console.log(isCollision)
     }
 
     const draw = () => {
         canvas.drawCanvas(obstacles, canvasHeight, canvasWidth);
-        canvas.drawPlayer(playerPositionX, playerPositionY, playerWidth, playerHeight);
+        canvas.drawPlayer(player.positionX, player.positionY, player.width, player.height);
     }
 
     createController(movePlayerLeft, movePlayerRight, movePlayerUp, movePlayerDown)
-    createEngine(updateMovement, draw, detectCollision);
+    createEngine(updateMovement, draw, detectCollision, player, obstacles);
 
     return { draw }
 }

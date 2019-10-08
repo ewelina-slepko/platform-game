@@ -1,10 +1,10 @@
-function createEngine(updateMovement, draw, detectCollision) {
+function createEngine(updateMovement, draw, detectCollision, player, obstacles) {
     let lastTimestamp = 0
 
     function update(timestamp) {
         if (timestamp - lastTimestamp >= 1000 / 80) {
             updateMovement()
-            detectCollision()
+            detectCollision(player, obstacles)
             lastTimestamp = timestamp;
         }
         draw()
